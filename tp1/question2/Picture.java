@@ -24,7 +24,8 @@ public class Picture {
     private Triangle roof;
     private Circle sun;
     private Circle sunset;
-    static int distMove;
+    private static int distMove;
+    private boolean terreFixe = true; 
     /**
      * Constructor for objects of class Picture
      */
@@ -90,8 +91,11 @@ public class Picture {
     public void coucher()
     
     {
-      MyThread m= new MyThread();
-      m.start();
+        if(terreFixe)
+        {
+            MyThread m= new MyThread();
+            m.start();
+        }
     }
     
     public class MyThread extends Thread
