@@ -1,5 +1,8 @@
 package question2;
 
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
 import question1.Circle;
 import question1.Square;
 import question1.Triangle;
@@ -20,7 +23,8 @@ public class Picture {
     private Square window;
     private Triangle roof;
     private Circle sun;
-
+    private Circle sunset;
+    static int distMove;
     /**
      * Constructor for objects of class Picture
      */
@@ -50,13 +54,22 @@ public class Picture {
         roof.makeVisible();
 
         sun = new Circle();
-        sun.changeColor("yellow");
+        sun.changeColor("blue");
         sun.moveHorizontal(180);
         sun.moveVertical(-10);
         sun.changeSize(60);
         sun.makeVisible();
+        
+        sunset = new Circle();
+        sunset.changeColor("yellow");
+        sunset.moveHorizontal(60);
+        sunset.moveVertical(-20);
+        sunset.changeSize(60);
+        sunset.makeVisible();
     }
 
+   
+  
     /**
      * Change this picture to black/white display
      */
@@ -67,11 +80,36 @@ public class Picture {
             window.changeColor("white");
             roof.changeColor("black");
             sun.changeColor("black");
+             sunset.changeColor("black");
         }
     }
 
     /**
-     * Change this picture to use color display
+       Sleeping yellow sun       **/
+      
+    public void coucher()
+    
+    {
+      MyThread m= new MyThread();
+      m.start();
+    }
+    
+    public class MyThread extends Thread
+    {
+      int distance=250;
+      public void run()
+      {
+        while(distance>=0)
+        {
+           sun.slowMoveVertical(10);
+           distance-=10;
+           
+           try{sleep(150);}
+           catch(Exception e){}
+        }
+        }
+    }
+     /* Change this picture to use color display
      */
     public void setColor() {
         if (wall != null) // only if it's painted already...
@@ -79,7 +117,8 @@ public class Picture {
             wall.changeColor("red");
             window.changeColor("black");
             roof.changeColor("green");
-            sun.changeColor("yellow");
+            sun.changeColor("blue");
+            sunset.changeColor("yellow");
         }
     }
 

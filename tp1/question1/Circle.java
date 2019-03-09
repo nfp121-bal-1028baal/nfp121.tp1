@@ -16,7 +16,7 @@ public class Circle {
     private int yPosition;
     private String color;
     private boolean isVisible;
-
+    static int distMove;
     /**
      * Create a new circle at default position with default color.
      */
@@ -127,7 +127,7 @@ public class Circle {
             draw();
         }
     }
-
+ 
     /**
      * Change the size to the new size (in pixels). Size must be >= 0.
      */
